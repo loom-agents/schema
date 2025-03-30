@@ -19,7 +19,7 @@ You write schema-like TypeScript. You get real JSON Schema and real validation. 
 
 ---
 
-## 🛠 Install
+## Install
 
 ```sh
 bun add loom-schema
@@ -29,7 +29,7 @@ Everything’s bundled — including `ajv` and `ajv-formats`. No extra dependenc
 
 ---
 
-## 🚀 Example
+## Example
 
 ```ts
 import { object, string, number, Infer } from "loom-schema";
@@ -50,7 +50,7 @@ if (!result.valid) {
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 Use LOOM Schema when you need to feed schemas into systems that **expect schemas**:
 
@@ -65,7 +65,7 @@ If it wants a schema, LOOM can give it one — safely, programmatically, and wit
 
 ---
 
-## ✨ Features
+## Features
 
 - 📐 **TypeScript-first**: deeply inferred types
 - 🧩 **Composable fragments**: mix and reuse schema pieces with ease
@@ -76,7 +76,7 @@ If it wants a schema, LOOM can give it one — safely, programmatically, and wit
 
 ---
 
-## 📐 Schema Inference
+## Schema Inference
 
 ```ts
 const Config = object({
@@ -93,7 +93,7 @@ type ConfigType = Infer<typeof Config>;
 
 ---
 
-## 🧩 Composition
+## Composition
 
 ```ts
 import { allOf, object, string } from "loom-schema";
@@ -111,7 +111,7 @@ const Product = allOf([
 
 ---
 
-## 🧪 Validation
+## Validation
 
 ```ts
 const result = await Product.validate({
@@ -125,7 +125,7 @@ Returns `{ valid, errors }` from AJV — clean and informative.
 
 ---
 
-## 🪶 Philosophy
+## Philosophy
 
 LOOM Schema wasn’t built to be trendy. It was built to be **minimal**, **practical**, and **actually usable** across systems that expect real JSON Schema. It gives you the right pieces to build and validate data shapes at runtime — without taking over your project.
 
