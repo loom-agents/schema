@@ -1,4 +1,4 @@
-# 🧵 LOOM Schema
+# LOOM Schema
 
 **A schema system that does exactly what you need.**  
 Type inference. Runtime validation. JSON Schema generation.  
