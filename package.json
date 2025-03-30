@@ -1,6 +1,6 @@
 {
   "name": "loom-schema",
-  "version": "1.0.0",                
+  "version": "1.0.1",                
   "description": "Class-based JSON Schema library with full TypeScript support",
   "type": "module",                
   "main": "./dist/index.js",        
