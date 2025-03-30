@@ -32,6 +32,23 @@
     "@types/node": "^22.13.14",
     "@playwright/test": "^1.51.1"
   },
-  "keywords": ["json-schema", "typescript", "validation", "ajv"],
+  "keywords": [
+    "json-schema",
+    "typescript",
+    "schema",
+    "validation",
+    "runtime validation",
+    "type inference",
+    "typescript schema",
+    "decorators",
+    "schema generation",
+    "data validation",
+    "openai",
+    "function calling",
+    "api contracts",
+    "type-safe",
+    "minimal",
+    "declarative"
+  ],
   "license": "MIT"
 }
