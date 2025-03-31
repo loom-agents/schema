@@ -713,22 +713,22 @@ type InferExplicit<
   >]?: T["properties"][K] extends SchemaFragment<infer U> ? U : any;
 };
 
+type AllowAny<T extends object> = [keyof T] extends [never]
+  ? T
+  : T & { [K in Exclude<string, keyof T>]?: any };
+
 export function object<
+  T extends Partial<ObjectSchemaOptions> = ObjectSchemaOptions
+>(
+  options: AllowAny<T> = {} as T
+): SchemaFragment<
   T extends {
     properties: Record<string, JsonSchemaInput>;
     required?: readonly (keyof T["properties"])[];
   }
->(
-  options: T & Partial<Omit<ObjectSchemaOptions, "properties" | "required">>
-): SchemaFragment<InferExplicit<T>>;
-
-export function object<TProps extends Record<string, JsonSchemaInput>>(
-  options: TProps
-): SchemaFragment<{
-  [K in keyof TProps]: TProps[K] extends SchemaFragment<infer U> ? U : any;
-}>;
-
-export function object(options: any): SchemaFragment<any> {
+    ? InferExplicit<T>
+    : { [K in keyof T]: T[K] extends SchemaFragment<infer U> ? U : any }
+> {
   const baseFragment = {
     toSchema: function (
       this: any,

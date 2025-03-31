@@ -11,6 +11,7 @@ import {
   allOf,
   anyOf,
   oneOf,
+  type Infer,
   conditional,
 } from "../src/schema";
 import fs from "fs";
