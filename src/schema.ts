@@ -717,16 +717,16 @@ type AllowAny<T extends object> = [keyof T] extends [never]
   ? T
   : T & { [K in Exclude<string, keyof T>]?: any };
 
-export function object<
-  T extends Partial<ObjectSchemaOptions> = ObjectSchemaOptions
->(
-  options: AllowAny<T> = {} as T
+export function object<const T extends Partial<ObjectSchemaOptions>>(
+  options: AllowAny<T>
 ): SchemaFragment<
-  T extends {
-    properties: Record<string, JsonSchemaInput>;
-    required?: readonly (keyof T["properties"])[];
-  }
-    ? InferExplicit<T>
+  "properties" extends keyof T
+    ? T extends {
+        properties: Record<string, JsonSchemaInput>;
+        required?: readonly (keyof T["properties"])[];
+      }
+      ? InferExplicit<T>
+      : { [K in keyof T]: T[K] extends SchemaFragment<infer U> ? U : any }
     : { [K in keyof T]: T[K] extends SchemaFragment<infer U> ? U : any }
 > {
   const baseFragment = {
@@ -786,7 +786,16 @@ export function object<
       throw new Error("validate method not attached");
     },
   };
-  return withValidation<any, typeof baseFragment>(baseFragment);
+  type OutType = "properties" extends keyof T
+    ? T extends {
+        properties: Record<string, JsonSchemaInput>;
+        required?: readonly (keyof T["properties"])[];
+      }
+      ? InferExplicit<T>
+      : { [K in keyof T]: T[K] extends SchemaFragment<infer U> ? U : any }
+    : { [K in keyof T]: T[K] extends SchemaFragment<infer U> ? U : any };
+
+  return withValidation<OutType, typeof baseFragment>(baseFragment);
 }
 
 export type Infer<T> = T extends SchemaFragment<infer U> ? U : never;
