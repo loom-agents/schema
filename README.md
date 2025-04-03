@@ -4,6 +4,8 @@
 Type inference. Runtime validation. JSON Schema generation.  
 Zero build steps. No extra fluff. It just works.
 
+[Read the docs](https://loom-agents.github.io/docs/schema/)
+
 ---
 
 LOOM Schema was built because nothing else got this balance right:
